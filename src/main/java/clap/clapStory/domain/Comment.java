@@ -25,10 +25,11 @@ public class Comment {
     @JoinColumn(name = "post_id")
     private Post post;
 
+    @Column(name = "deleted")
     private Boolean deleted;
 
     protected Comment(){}
 
     @Override
-    public String toString() { return String.valueOf(id); }
+    public String toString() { return String.format("%s", id);}
 }
