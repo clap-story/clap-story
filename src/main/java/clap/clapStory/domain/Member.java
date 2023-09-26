@@ -5,25 +5,23 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
 @Getter
 public class Member {
 
     @Id @GeneratedValue
-    @Column(name = "member_id", unique = true, nullable = false)
+    @Column(name = "id", unique = true)
     private Long id;
 
-    @Column(name = "member_name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "member_password")
+    @Column(name = "password")
     private String password;
 
     @Column(name = "email")
@@ -32,7 +30,7 @@ public class Member {
     @Column(name = "contact")
     private String contact;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany
     private List<Post> posts = new ArrayList<>();
 
 }
