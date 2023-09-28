@@ -3,6 +3,7 @@ package clap.clapStory.domain;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
@@ -10,11 +11,12 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 
-@Entity(name = "posts")
+@Entity(name = "post")
 @Getter
 public class Post {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -29,4 +31,9 @@ public class Post {
 
     @LastModifiedDate
     private LocalDateTime editedDate;
+
+    protected Post() {}
+
+    @Override
+    public String toString() { return String.format("%s", id);}
 }
