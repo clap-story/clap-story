@@ -3,18 +3,22 @@ package clap.clapStory.domain;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity(name = "member")
 @Getter
+@Setter
 public class Member {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
     private Long id;
 
@@ -33,4 +37,10 @@ public class Member {
     @OneToMany
     private List<Post> posts = new ArrayList<>();
 
+    protected Member() {}
+
+    @Override
+    public String toString() {
+        return String.format("%s", id);
+    }
 }
